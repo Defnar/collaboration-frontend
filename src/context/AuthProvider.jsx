@@ -1,5 +1,6 @@
 import axios from "axios";
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import { AuthContext } from "./AuthContext";
 
 export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
@@ -8,12 +9,14 @@ export const AuthProvider = ({ children }) => {
     baseURL: import.meta.env.VITE_API_URL,
   });
 
-  api.interceptors.request.use((config) => {
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
+  useMemo(() => {
+    api.interceptors.request.use((config) => {
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
 
-    return config;
+      return config;
+    });
   });
 
   return (
