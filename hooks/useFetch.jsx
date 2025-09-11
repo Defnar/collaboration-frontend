@@ -8,16 +8,20 @@ const useFetch = (url) => {
 
   const { api } = useContext(AuthContext);
 
+
   useEffect(() => {
     setError(null);
     setData(null);
-    let ignore = true;
+    setLoading(true);
+
+    let ignore = false;
 
     const fetchData = async () => {
       try {
         const response = await api.get(url);
 
         if (!ignore) {
+
           setData(response.data);
           setError(null);
         }
@@ -35,6 +39,7 @@ const useFetch = (url) => {
 
     return () => {
       ignore = true;
+      setLoading(false);
     };
   }, [api, url]);
 

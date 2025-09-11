@@ -3,19 +3,16 @@ import { AuthContext } from "./AuthContext";
 import { CartContext } from "./CartContext";
 
 export const CartProvider = ({ children }) => {
-  const { user, setUser } = useContext(AuthContext);
+  const { user, setUser, api } = useContext(AuthContext);
   const [cart, setCart] = useState(user?.cart || []);
-
-  useEffect(() => {
-    setCart(user.cart);
-  }, [user])
 
   const addToCart = (product) => {
     setCart((prev) => {
       const exists = prev.find((item) => item.id === product.id);
-      if (exists) return prev.map((item) =>
-        item.id === product.id ? { ...item, qty: item.qty + 1 } : item
-      );
+      if (exists)
+        return prev.map((item) =>
+          item.id === product.id ? { ...item, qty: item.qty + 1 } : item
+        );
       return [...prev, { ...product, qty: 1 }];
     });
   };
@@ -30,12 +27,22 @@ export const CartProvider = ({ children }) => {
     cart.reduce((acc, item) => acc + item.price * item.qty, 0);
 
   // Optional: sync cart to user object
-  useState(() => {
-    if (user) setUser({ ...user, cart });
+  useEffect(() => {
+    if (user) {
+      api
+        .put("cart", { cart })
+        .then(() => {
+          console.log("data successfully sent");
+          setUser({ ...user, cart: cart });
+        })
+        .catch((err) => console.log(err));
+    }
   }, [cart]);
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, getCartTotal }}>
+    <CartContext.Provider
+      value={{ cart, addToCart, removeFromCart, clearCart, getCartTotal }}
+    >
       {children}
     </CartContext.Provider>
   );

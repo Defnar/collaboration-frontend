@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import JobCard from "./ProductCard.jsx";
 import { AuthContext } from "../context/AuthContext.jsx";
 

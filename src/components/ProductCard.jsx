@@ -6,7 +6,8 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="bg-white p-4 rounded shadow hover:shadow-lg transition">
-      <h2 className="font-bold">{product.name}</h2>
+      <h2 className="font-bold">{product.title}</h2>
+      <img alt="product image" src={product.image}/>
       <p>${product.price}</p>
       <button
         onClick={() => addToCart(product)}

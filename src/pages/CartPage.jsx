@@ -1,21 +1,16 @@
 import { useContext } from "react";
+import CartCard from "../components/CartCard";
 import { CartContext } from "../context/CartContext";
 
-const ProductCard = ({ product }) => {
-  const { addToCart } = useContext(CartContext);
+const CartPage = () => {
+  const {cart} = useContext(CartContext);
 
   return (
-    <div className="bg-white p-4 rounded shadow hover:shadow-lg transition">
-      <h2 className="font-bold">{product.name}</h2>
-      <p>${product.price}</p>
-      <button
-        onClick={() => addToCart(product)}
-        className="bg-blue-500 text-white px-3 py-1 rounded mt-2"
-      >
-        Add to Cart
-      </button>
-    </div>
+    <>
+    {cart.length===0 && <p>No items in cart</p>}
+    {cart.length >0 && cart.map(product => <CartCard key={product.id} product={product}/>)}
+    </>
   );
 };
 
-export default ProductCard;
+export default CartPage;

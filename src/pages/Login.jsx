@@ -1,5 +1,4 @@
 import { useContext, useState } from "react";
-import api from "../../utils/api";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
@@ -11,7 +10,7 @@ export default function Login() {
 
   let navigate = useNavigate();
 
-  const { setToken, setUser } = useContext(AuthContext);
+  const { setToken, setUser, api } = useContext(AuthContext);
 
   const handleFormChange = (event) => {
     const { name, value } = event.target;
@@ -25,9 +24,11 @@ export default function Login() {
     event.preventDefault();
 
     try {
-      const response = await api.post("/login", formData);
+      const response = await api.post("users/login", formData);
 
-      const { token, user } = response;
+      const { token, user } = response.data;
+
+      console.log(token);
 
       setToken(token);
       setUser(user);
@@ -38,8 +39,10 @@ export default function Login() {
       });
 
       navigate("/");
+
     } catch (err) {
       console.log(err);
+      alert("email/password wrong");
     }
   };
 
@@ -50,6 +53,7 @@ export default function Login() {
         <input
           type="email"
           placeholder="Email"
+          name="email"
           className="w-full p-2 border rounded"
           required
           onChange={handleFormChange}
@@ -57,6 +61,7 @@ export default function Login() {
         <input
           type="password"
           placeholder="Password"
+          name="password"
           className="w-full p-2 border rounded"
           required
           onChange={handleFormChange}

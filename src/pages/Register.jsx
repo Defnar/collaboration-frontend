@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
   const { api } = useContext(AuthContext);
@@ -17,13 +18,23 @@ export default function Register() {
     }));
   };
 
+  const navigate = useNavigate();
+
   const submitData = async (event) => {
     event.preventDefault();
 
     try {
-      await api.post("/register", formData);
+      await api.post("users/register", formData);
 
       alert("registration successful");
+      setFormData({
+        username: "",
+        email: "",
+        password: ""
+      })
+
+      navigate("/");
+
     } catch (err) {
       console.log(err);
     }
