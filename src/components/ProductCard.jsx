@@ -1,7 +1,8 @@
-import { useCart } from "../context/CartContext";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 export default function ProductCard({ product }) {
-  const { addToCart } = useCart();
+  const { addToCart } = useContext(CartContext);
 
   return (
     <div className="bg-white rounded-lg shadow-md p-4 hover:scale-105 transform transition duration-300">

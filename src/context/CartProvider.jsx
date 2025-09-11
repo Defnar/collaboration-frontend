@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { CartContext } from "./CartContext";
 
 export function CartProvider({ children }) {
   const [cartItems, setCartItems] = useState([]);
