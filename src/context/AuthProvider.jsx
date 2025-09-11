@@ -8,6 +8,9 @@ export const AuthProvider = ({ children }) => {
 
   const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL,
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
