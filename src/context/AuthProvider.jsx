@@ -6,7 +6,7 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
 
-  // create axios instance once
+  // create axios instance onceSS
   const apiRef = useRef(
     axios.create({
       baseURL: import.meta.env.VITE_API_URL,
@@ -14,19 +14,8 @@ export const AuthProvider = ({ children }) => {
     })
   );
 
-  // login / logout helpers
-  const login = (userData) => {
-    setUser(userData);
-  };
-
-  const logout = () => {
-    setUser(null);
-    setToken(null);
-  };
-
-  // attach/remove interceptor when token changes
-  useEffect(() => {
-    const interceptor = apiRef.current.interceptors.request.use((config) => {
+  useMemo(() => {
+    apiRef.interceptors.request.use((config) => {
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }

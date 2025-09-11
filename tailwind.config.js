@@ -1,19 +1,18 @@
-/** @type {import('tailwindcss').Config} */
+/**@type {import('tailwindcss').Config} */
 export default {
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
-  ],
+  content: ['./index.html', './src/**/*.{js,jsx}'],
   theme: {
     extend: {
       colors: {
-        calmBlue: "#a1c4fd",
-        calmPurple: "#c2e9fb",
+        barbiePink: '#ff69b4',
+        softPurple: '#d8b4fe',
+        lightBlue: '#93c5fd',
       },
-      backgroundImage: {
-        "calm-gradient": "linear-gradient(to right, #a1c4fd, #c2e9fb)",
+      fontFamily: {
+        international: ['"Noto Sans JP"', 'sans-serif'],
+        anime: ['"Comic Sans MS"', 'cursive'],
       },
     },
   },
   plugins: [],
-}
+};
