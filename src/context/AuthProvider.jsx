@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
   );
 
   useMemo(() => {
-    apiRef.interceptors.request.use((config) => {
+    apiRef.current.interceptors.request.use((config) => {
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
