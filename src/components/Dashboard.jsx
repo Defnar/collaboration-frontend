@@ -1,5 +1,5 @@
 import React from "react";
-import JobCard from "./JobCard.jsx";
+import JobCard from "./ProductCard.jsx";
 
 export default function Dashboard() {
   const jobs = [

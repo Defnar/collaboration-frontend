@@ -8,16 +8,14 @@ import CartPage from './pages/CartPage';
 export default function App() {
   return (
     <Router>
-      <div className='min-h-screen bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100'>
+      <div className="min-h-screen bg-gradient-to-r from-lightBlue via-softPurple to-barbiePink font-international">
         <Navbar />
-        <div className='p-6'>
-          <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/cart' element={<CartPage />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/cart" element={<CartPage />} />
+        </Routes>
       </div>
     </Router>
   );
