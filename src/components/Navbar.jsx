@@ -1,15 +1,25 @@
-import { Link } from 'react-router-dom';
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
+import { Link } from "react-router-dom";
 
-export default function Navbar() {
+const Navbar = () => {
+  const { cart } = useContext(CartContext);
+
   return (
-    <nav className="bg-barbiePink text-white p-4 shadow-md flex justify-between items-center">
-      <h1 className="text-2xl font-anime">Anime Barbie Shop</h1>
-      <div className="space-x-4">
-        <Link to="/" className="hover:text-softPurple transition">Home</Link>
-        <Link to="/login" className="hover:text-softPurple transition">Login</Link>
-        <Link to="/register" className="hover:text-softPurple transition">Register</Link>
-        <Link to="/cart" className="hover:text-softPurple transition">Cart</Link>
+    <nav className="p-4 bg-gradient-to-r from-blue-200 via-blue-300 to-blue-400 flex justify-between">
+      <Link to="/" className="font-bold text-xl">Job/Store Dashboard</Link>
+      <div>
+        <Link to="/cart" className="relative">
+          Cart
+          {cart.length > 0 && (
+            <span className="absolute -top-2 -right-3 bg-red-500 text-white rounded-full px-2 text-xs">
+              {cart.length}
+            </span>
+          )}
+        </Link>
       </div>
     </nav>
   );
-}
+};
+
+export default Navbar;
