@@ -41,7 +41,7 @@ export default function Register() {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto mt-10 bg-white rounded-lg shadow-md">
+    <div className="p-6 max-w-md flex flex-col items-center mx-auto mt-10 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-anime mb-4 text-barbiePink">Register</h2>
       <form className="space-y-4" onSubmit={submitData}>
         <input
@@ -73,7 +73,7 @@ export default function Register() {
         />
         <button
           type="submit"
-          className="w-full bg-barbiePink text-white p-2 rounded hover:bg-softPurple transition"
+          className="w-full bg-blue-300 text-black p-2 rounded font-bold hover:bg-blue-400 transition"
         >
           Register
         </button>

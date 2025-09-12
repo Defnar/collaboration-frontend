@@ -47,7 +47,7 @@ export default function Login() {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto mt-10 bg-white rounded-lg shadow-md">
+    <div className="p-6 max-w-md mx-auto mt-10 flex flex-col items-center bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-anime mb-4 text-barbiePink">Login</h2>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <input
@@ -68,7 +68,7 @@ export default function Login() {
         />
         <button
           type="submit"
-          className="w-full bg-barbiePink text-white p-2 rounded hover:bg-softPurple transition"
+          className="w-full bg-blue-300 text-black p-2 rounded font-bold hover:bg-blue-400 transition"
         >
           Login
         </button>
