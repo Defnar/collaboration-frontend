@@ -10,11 +10,6 @@ export default function Home() {
 
   return (
     <>
-      {loading && (
-        <div class="flex justify-center">
-          <div class=" animate-spin size-20 border-10 border-gray-300 border-t-black rounded-full"></div>
-        </div>
-      )}
       <div className="p-6">
         <div className="mb-8 text-center">
           {user ? (
@@ -37,7 +32,11 @@ export default function Home() {
             </div>
           )}
         </div>
-
+        {loading && (
+          <div class="flex justify-center">
+            <div class=" animate-spin size-20 border-10 border-gray-300 border-t-black rounded-full"></div>
+          </div>
+        )}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {data &&
             data.map((product) => (
